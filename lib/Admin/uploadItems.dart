@@ -21,12 +21,17 @@ class UploadPage extends StatefulWidget
 class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMixin<UploadPage>
 {
   bool get wantKeepAlive => true;
-
   File file;
+  TextEditingController _descriptiontextEditingController = TextEditingController();
+  TextEditingController _pricetextEditingController = TextEditingController();
+  TextEditingController _titletextEditingController = TextEditingController();
+  TextEditingController _shortinfotextEditingController = TextEditingController();
+  String productId = DateTime.now().millisecondsSinceEpoch.toString();
+  bool uploading = false;
 
   @override
   Widget build(BuildContext context) {
-    return displayAdminHomeScreen();
+    return file == null ? displayAdminHomeScreen() : displayAdminUploadFormScreen();
   }
 
   displayAdminHomeScreen()
@@ -146,6 +151,133 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
 
     setState(() {
       file = imageFile;
+    });
+  }
+
+
+  displayAdminUploadFormScreen()
+  {
+    return Scaffold(
+      appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: new BoxDecoration(
+            gradient: new LinearGradient(
+              colors: [Colors.pinkAccent,Colors.lightGreenAccent],
+              begin: const FractionalOffset(0.0, 0.0),
+              end: const FractionalOffset(1.0, 0.0),
+              stops: [0.0,1.0],
+              tileMode: TileMode.clamp,
+            ),
+          ),
+        ),
+        leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,),onPressed: clearFormInfo),
+        title: Text("New Product",style: TextStyle(color: Colors.white,fontSize: 24.0,fontWeight: FontWeight.bold,),),
+        actions: [
+          FlatButton(
+            onPressed: ()=> print("Clicked"),
+            child: Text("Add",style: TextStyle(color: Colors.pinkAccent,fontSize: 16.0,fontWeight: FontWeight.bold,),),
+          )
+        ],
+      ),
+      body: ListView(
+        children: [
+          uploading ? linearProgress() : Text(""),
+          Container(
+            height: 230.0,
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Center(
+              child: AspectRatio(
+                aspectRatio: 16/9,
+                child: Container(
+                  decoration: BoxDecoration(image: DecorationImage(image: FileImage(file),fit: BoxFit.cover)),
+                ),
+              ),
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(top: 12.0),),
+
+          ListTile(
+            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            title: Container(
+              width: 250.0,
+              child: TextField(
+                style: TextStyle(color: Colors.deepPurpleAccent),
+                controller: _shortinfotextEditingController,
+                decoration: InputDecoration(
+                  hintText: "Short Info",
+                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Divider(color: Colors.pinkAccent,),
+
+          ListTile(
+            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            title: Container(
+              width: 250.0,
+              child: TextField(
+                style: TextStyle(color: Colors.deepPurpleAccent),
+                controller: _titletextEditingController,
+                decoration: InputDecoration(
+                  hintText: "Title",
+                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Divider(color: Colors.pinkAccent,),
+
+          ListTile(
+            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            title: Container(
+              width: 250.0,
+              child: TextField(
+                style: TextStyle(color: Colors.deepPurpleAccent),
+                controller: _descriptiontextEditingController,
+                decoration: InputDecoration(
+                  hintText: "Description",
+                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Divider(color: Colors.pinkAccent,),
+
+          ListTile(
+            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            title: Container(
+              width: 250.0,
+              child: TextField(
+                keyboardType: TextInputType.number,
+                style: TextStyle(color: Colors.deepPurpleAccent),
+                controller: _pricetextEditingController,
+                decoration: InputDecoration(
+                  hintText: "Price",
+                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Divider(color: Colors.pinkAccent,)
+
+
+        ],
+      ),
+    );
+  }
+  clearFormInfo()
+  {
+    setState(() {
+      file = null;
+      _descriptiontextEditingController.clear();
+      _pricetextEditingController.clear();
+      _shortinfotextEditingController.clear();
+      _titletextEditingController.clear();
     });
   }
 }
