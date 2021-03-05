@@ -1,3 +1,4 @@
+//import 'dart:html';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminShiftOrders.dart';
@@ -174,14 +175,14 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
         title: Text("New Product",style: TextStyle(color: Colors.white,fontSize: 24.0,fontWeight: FontWeight.bold,),),
         actions: [
           FlatButton(
-            onPressed: ()=> print("Clicked"),
+            onPressed: uploading ? null : ()=> uploadImageAndSaveItemInfo(),
             child: Text("Add",style: TextStyle(color: Colors.pinkAccent,fontSize: 16.0,fontWeight: FontWeight.bold,),),
           )
         ],
       ),
       body: ListView(
         children: [
-          uploading ? linearProgress() : Text(""),
+          uploading ? circularProgress() : Text(""),
           Container(
             height: 230.0,
             width: MediaQuery.of(context).size.width * 0.8,
@@ -278,6 +279,51 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
       _pricetextEditingController.clear();
       _shortinfotextEditingController.clear();
       _titletextEditingController.clear();
+    });
+  }
+
+  uploadImageAndSaveItemInfo() async
+  {
+    setState(() {
+      uploading = true;
+
+    });
+
+    String imageDownloadUrl = await uploadItemImage(file);
+    saveItemInfo(imageDownloadUrl);
+
+  }
+
+  Future<String>uploadItemImage(mFileImage) async
+  {
+    final StorageReference storageReference = FirebaseStorage.instance.ref().child("Items");
+    StorageUploadTask uploadTask = storageReference.child("product_$productId.jpg").putFile(mFileImage);
+    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+    return downloadUrl;
+  }
+
+  saveItemInfo(String downloadUrl)
+  {
+    final itemsRef = Firestore.instance.collection("items");
+    itemsRef.document(productId).setData({
+      "shortInfo" : _shortinfotextEditingController.text.trim(),
+      "longDescription" : _descriptiontextEditingController.text.trim(),
+      "price" : _pricetextEditingController.text.trim(),
+      "publishedDate" : DateTime.now(),
+      "status" : "available",
+      "thumbnailUrl" : downloadUrl,
+      "title" : _titletextEditingController.text.trim(),
+    });
+
+    setState(() {
+      file = null;
+      uploading = false;
+      productId = DateTime.now().millisecondsSinceEpoch.toString();
+      _descriptiontextEditingController.clear();
+      _titletextEditingController.clear();
+      _shortinfotextEditingController.clear();
+      _pricetextEditingController.clear();
     });
   }
 }
