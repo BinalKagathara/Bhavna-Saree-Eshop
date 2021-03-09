@@ -122,7 +122,7 @@ class MyDrawer extends StatelessWidget {
                     });
                   },
                 ),
-                Divider(height: 10.0, color: Colors.white,thickness: 6.0,),
+                //Divider(height: 20.0, color: Colors.white,thickness: 6.0,),
 
               ],
             ),
