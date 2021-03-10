@@ -82,6 +82,12 @@ class _StoreHomeState extends State<StoreHome> {
           ],
         ),
         drawer: MyDrawer(),
+        body: CustomScrollView(
+          slivers: [
+            SliverPersistentHeader(pinned: true,delegate: SearchBoxDelegate())
+          ],
+        ),
+
       ),
     );
   }
