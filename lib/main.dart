@@ -79,15 +79,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Material(
       child:Container(
-        decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-            colors:[Colors.pinkAccent,Colors.lightGreenAccent],
-            begin: const FractionalOffset(0.0, 0.0),
-            end: const FractionalOffset(1.0, 0.0),
-            stops: [0.0,1.0],
-            tileMode: TileMode.clamp,
-          )
-        ),
+
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
