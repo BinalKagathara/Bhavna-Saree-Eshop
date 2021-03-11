@@ -188,7 +188,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                             child: Row(
                               children: [
                                 Text(
-                                  r"Original Price : ₹",
+                                  r"Original Price : ₹ ",
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     color: Colors.grey,
@@ -218,7 +218,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                                   ),
                                 ),
                                 Text(
-                                  "₹",
+                                  "₹ ",
                                   style: TextStyle(color: Colors.red,fontSize: 16.0,),
                                 ),
                                 Text(
