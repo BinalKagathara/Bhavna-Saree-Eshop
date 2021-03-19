@@ -40,15 +40,7 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
-              colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-              begin: const FractionalOffset(0.0, 0.0),
-              end: const FractionalOffset(1.0, 0.0),
-              stops: [0.0,1.0],
-              tileMode: TileMode.clamp,
-            ),
-          ),
+
         ),
         leading: IconButton(
           icon: Icon(Icons.border_color,color: Colors.white,),
@@ -60,7 +52,7 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
         ),
         actions: [
           FlatButton(
-            child: Text("Logout",style: TextStyle(color: Colors.pinkAccent,fontSize: 16.0,fontWeight: FontWeight.bold),),
+            child: Text("Logout",style: TextStyle(color: Colors.white,fontSize: 16.0,fontWeight: FontWeight.bold),),
             onPressed: ()
             {
               Route route = MaterialPageRoute(builder: (c) => SplashScreen());
@@ -75,26 +67,18 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
   getAdminHomeScreenBody()
   {
     return Container(
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-          begin: const FractionalOffset(0.0, 0.0),
-          end: const FractionalOffset(1.0, 0.0),
-          stops: [0.0,1.0],
-          tileMode: TileMode.clamp,
-        ),
-      ),
+
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.shop_two,color: Colors.white,size: 200.0,),
+            Icon(Icons.shop_two,color: Colors.deepOrangeAccent,size: 200.0,),
             Padding(
               padding: EdgeInsets.only(top: 20.0),
               child: RaisedButton(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9.0)),
                 child: Text("Add new item",style: TextStyle(fontSize: 20.0,color: Colors.white),),
-                color: Colors.green,
+                color: Colors.deepOrangeAccent,
                 onPressed: () => takeImage(context),
 
               ),
@@ -112,18 +96,18 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
       builder: (con)
         {
           return SimpleDialog(
-            title: Text("Item Image",style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),),
+            title: Text("Item Image",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold),),
             children: [
               SimpleDialogOption(
-                child: Text("Capture with Camera",style: TextStyle(color: Colors.green,)),
+                child: Text("Capture with Camera",style: TextStyle(color: Colors.deepOrangeAccent,)),
                 onPressed: capturePhotoWithCamera,
               ),
               SimpleDialogOption(
-                child: Text("Select from Gallery  ",style: TextStyle(color: Colors.green,)),
+                child: Text("Select from Gallery  ",style: TextStyle(color: Colors.deepOrangeAccent,)),
                 onPressed: pickPhotoFromGallery,
               ),
               SimpleDialogOption(
-                child: Text("Cancel",style: TextStyle(color: Colors.green,)),
+                child: Text("Cancel",style: TextStyle(color: Colors.deepOrangeAccent,)),
                 onPressed: ()
                   {
                     Navigator.pop(context);
@@ -161,22 +145,14 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
-              colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-              begin: const FractionalOffset(0.0, 0.0),
-              end: const FractionalOffset(1.0, 0.0),
-              stops: [0.0,1.0],
-              tileMode: TileMode.clamp,
-            ),
-          ),
+
         ),
         leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.white,),onPressed: clearFormInfo),
         title: Text("New Product",style: TextStyle(color: Colors.white,fontSize: 24.0,fontWeight: FontWeight.bold,),),
         actions: [
           FlatButton(
             onPressed: uploading ? null : ()=> uploadImageAndSaveItemInfo(),
-            child: Text("Add",style: TextStyle(color: Colors.pinkAccent,fontSize: 16.0,fontWeight: FontWeight.bold,),),
+            child: Text("Add",style: TextStyle(color: Colors.white,fontSize: 16.0,fontWeight: FontWeight.bold,),),
           )
         ],
       ),
@@ -198,73 +174,73 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
           Padding(padding: EdgeInsets.only(top: 12.0),),
 
           ListTile(
-            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            leading: Icon(Icons.perm_device_info,color: Colors.deepOrangeAccent,),
             title: Container(
               width: 250.0,
               child: TextField(
-                style: TextStyle(color: Colors.deepPurpleAccent),
+                style: TextStyle(color: Colors.deepOrangeAccent),
                 controller: _shortinfotextEditingController,
                 decoration: InputDecoration(
                   hintText: "Short Info",
-                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          Divider(color: Colors.pinkAccent,),
+          Divider(color: Colors.deepOrangeAccent,),
 
           ListTile(
-            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            leading: Icon(Icons.perm_device_info,color: Colors.deepOrangeAccent,),
             title: Container(
               width: 250.0,
               child: TextField(
-                style: TextStyle(color: Colors.deepPurpleAccent),
+                style: TextStyle(color: Colors.deepOrangeAccent),
                 controller: _titletextEditingController,
                 decoration: InputDecoration(
                   hintText: "Title",
-                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          Divider(color: Colors.pinkAccent,),
+          Divider(color: Colors.deepOrangeAccent,),
 
           ListTile(
-            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            leading: Icon(Icons.perm_device_info,color: Colors.deepOrangeAccent,),
             title: Container(
               width: 250.0,
               child: TextField(
-                style: TextStyle(color: Colors.deepPurpleAccent),
+                style: TextStyle(color: Colors.deepOrangeAccent),
                 controller: _descriptiontextEditingController,
                 decoration: InputDecoration(
                   hintText: "Description",
-                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          Divider(color: Colors.pinkAccent,),
+          Divider(color: Colors.deepOrangeAccent,),
 
           ListTile(
-            leading: Icon(Icons.perm_device_info,color: Colors.pinkAccent,),
+            leading: Icon(Icons.perm_device_info,color: Colors.deepOrangeAccent,),
             title: Container(
               width: 250.0,
               child: TextField(
                 keyboardType: TextInputType.number,
-                style: TextStyle(color: Colors.deepPurpleAccent),
+                style: TextStyle(color: Colors.deepOrangeAccent),
                 controller: _pricetextEditingController,
                 decoration: InputDecoration(
                   hintText: "Price",
-                  hintStyle: TextStyle(color: Colors.deepPurpleAccent),
+                  hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          Divider(color: Colors.pinkAccent,)
+          Divider(color: Colors.deepOrangeAccent,)
 
 
         ],
@@ -286,7 +262,6 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
   {
     setState(() {
       uploading = true;
-
     });
 
     String imageDownloadUrl = await uploadItemImage(file);
@@ -296,7 +271,7 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
 
   Future<String>uploadItemImage(mFileImage) async
   {
-    final StorageReference storageReference = FirebaseStorage.instance.ref().child("Items");
+    final StorageReference storageReference = FirebaseStorage.instance.ref().child("items");
     StorageUploadTask uploadTask = storageReference.child("product_$productId.jpg").putFile(mFileImage);
     StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
     String downloadUrl = await taskSnapshot.ref.getDownloadURL();

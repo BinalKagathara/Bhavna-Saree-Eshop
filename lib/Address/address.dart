@@ -13,6 +13,8 @@ import 'addAddress.dart';
 
 class Address extends StatefulWidget
 {
+  final double totalAmount;
+  const Address({Key key,this.totalAmount}):super(key: key);
   @override
   _AddressState createState() => _AddressState();
 }
@@ -23,6 +25,20 @@ class _AddressState extends State<Address>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+
+      child: Scaffold(
+        appBar: MyAppBar(),
+        floatingActionButton: FloatingActionButton.extended(
+          label: Text("Add New Address"),
+          backgroundColor: Colors.deepOrangeAccent,
+          icon: Icon(Icons.add_location),
+          onPressed: ()
+          {
+            Route route =  MaterialPageRoute(builder: (c)=> AddAddress());
+            Navigator.push(context, route);
+          },
+        ),
+      ),
 
     );
   }

@@ -35,17 +35,17 @@ class _LoginState extends State<Login>
           children: [
             Container(
               alignment: Alignment.bottomCenter,
-              child: Image.asset(
-                "images/login.png",
-                height: 240.0,
-                width: 240.0,
-              ),
+
+            ),
+            SizedBox(
+              height: 110.0,
             ),
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                "Login To your Account",
-                style: TextStyle(color: Colors.pinkAccent),
+                "Login",
+                style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold,fontSize: 24.0),
+
               ),
             ),
             Form(
@@ -67,6 +67,9 @@ class _LoginState extends State<Login>
                 ],
               ),
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             RaisedButton(
               onPressed: () {
                 _emailTextEditingController.text.isNotEmpty &&
@@ -80,24 +83,20 @@ class _LoginState extends State<Login>
                         }
                       );
               },
-              color: Colors.white,
-              child: Text("Login",style: TextStyle(color: Colors.black),),
+              color: Colors.deepOrangeAccent,
+              child: Text("Login",style: TextStyle(color: Colors.white),),
             ),
             SizedBox(
               height: 50.0,
             ),
-            Container(
-              height: 4.0,
-              width: _screenWidth * 0.8,
-              color: Colors.pinkAccent,
-            ),
+
             SizedBox(
-              height: 10.0,
+              height: 80.0,
             ),
             FlatButton.icon(
               onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminSignInPage())),
-              icon: (Icon(Icons.nature_people,color: Colors.pinkAccent,)),
-              label: Text("I'm Admin",style: TextStyle(color: Colors.pinkAccent,fontWeight: FontWeight.bold),),
+              icon: (Icon(Icons.nature_people,color: Colors.deepOrangeAccent,)),
+              label: Text("I'm Admin",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold),),
             )
           ],
         ),

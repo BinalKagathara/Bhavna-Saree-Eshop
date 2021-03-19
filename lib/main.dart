@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (c) => CartItemCounter()),
-        ChangeNotifierProvider(create: (c) => CartItemCounter()),
+        ChangeNotifierProvider(create: (c) => ItemQuantity()),
         ChangeNotifierProvider(create: (c) => AddressChanger()),
         ChangeNotifierProvider(create: (c) => TotalAmount()),
       ],
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             title: 'e-Shop',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              primaryColor: Colors.pinkAccent,
+              primaryColor: Colors.deepOrangeAccent,
             ),
             home: SplashScreen()
         ),
@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen>
               SizedBox(height : 20.0),
               Text(
                 "Bhavna Saree",
-              style: TextStyle(color: Colors.deepOrange,fontSize: 34.0),
+              style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 34.0,fontFamily: "Signatra"),
               ),
             ],
           ),

@@ -37,7 +37,7 @@ class _RegisterState extends State<Register>
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            SizedBox(height: 10.0,),
+            SizedBox(height: 20.0,),
             InkWell(
               onTap: _selectAndPickImage,
               child: CircleAvatar(
@@ -83,17 +83,13 @@ class _RegisterState extends State<Register>
             ),
             RaisedButton(
               onPressed: () { uploadAndSaveImage(); },
-              color: Colors.white,
-              child: Text("Sign Up",style: TextStyle(color: Colors.black),),
+              color: Colors.deepOrangeAccent,
+              child: Text("Sign Up",style: TextStyle(color: Colors.white),),
             ),
             SizedBox(
               height: 30.0,
             ),
-            Container(
-              height: 4.0,
-              width: _screenWidth * 0.8,
-              color: Colors.pinkAccent,
-            ),
+
             SizedBox(
               height: 15.0,
             ),
@@ -201,7 +197,7 @@ class _RegisterState extends State<Register>
 
   Future savaUserInfoToFireStore(FirebaseUser fUser) async
   {
-    Firestore.instance.collection("user").document(fUser.uid).setData({
+    Firestore.instance.collection("users").document(fUser.uid).setData({
       "uid" : fUser.uid,
       "email" : fUser.email,
       "name" : _nameTextEditingController.text.trim(),

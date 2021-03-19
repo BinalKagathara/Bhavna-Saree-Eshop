@@ -16,15 +16,6 @@ class MyDrawer extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.only(top: 25.0,bottom: 10.0),
-            decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-                begin: const FractionalOffset(0.0, 0.0),
-                end: const FractionalOffset(1.0, 0.0),
-                stops: [0.0,1.0],
-                tileMode: TileMode.clamp,
-              ),
-            ),
             child: Column(
               children: [
                 Material(
@@ -43,7 +34,7 @@ class MyDrawer extends StatelessWidget {
                 SizedBox(height: 12.0,),
                 Text(
                   EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
-                  style: TextStyle(color: Colors.white,fontSize: 35.0,fontFamily: "signatra"),
+                  style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 35.0,fontFamily: "signatra"),
                 ),
               ],
             ),
@@ -51,70 +42,60 @@ class MyDrawer extends StatelessWidget {
           SizedBox(height: 12.0,),
           Container(
             padding: EdgeInsets.only(top: 1.0),
-            decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-                begin: const FractionalOffset(0.0, 0.0),
-                end: const FractionalOffset(1.0, 0.0),
-                stops: [0.0,1.0],
-                tileMode: TileMode.clamp,
-              ),
-            ),
             child: Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.home,color: Colors.white,),
-                  title: Text("Home",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.home,color: Colors.deepOrangeAccent,),
+                  title: Text("Home",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>StoreHome());
                     Navigator.pushReplacement(context, route);
                   },
                 ),
-                Divider(height: 10.0, color: Colors.white,thickness: 6.0,),
-
+                
                 ListTile(
-                  leading: Icon(Icons.reorder,color: Colors.white,),
-                  title: Text("My Order",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.reorder,color: Colors.deepOrangeAccent,),
+                  title: Text("My Order",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>MyOrders());
                     Navigator.pushReplacement(context, route);
                   },
                 ),
-                Divider(height: 10.0, color: Colors.white,thickness: 6.0,),
+                //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
 
                 ListTile(
-                  leading: Icon(Icons.shopping_cart,color: Colors.white,),
-                  title: Text("My Cart",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.shopping_cart,color: Colors.deepOrangeAccent,),
+                  title: Text("My Cart",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>CartPage());
                     Navigator.pushReplacement(context, route);
                   },
                 ),
-                Divider(height: 10.0, color: Colors.white,thickness: 6.0,),
+                //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
 
                 ListTile(
-                  leading: Icon(Icons.search,color: Colors.white,),
-                  title: Text("Search",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.search,color: Colors.deepOrangeAccent,),
+                  title: Text("Search",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>SearchProduct());
                     Navigator.pushReplacement(context, route);
                   },
                 ),
-                Divider(height: 10.0, color: Colors.white,thickness: 6.0,),
+                //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
 
                 ListTile(
-                  leading: Icon(Icons.add_location,color: Colors.white,),
-                  title: Text("Add New Address",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.add_location,color: Colors.deepOrangeAccent,),
+                  title: Text("Add New Address",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>AddAddress());
                     Navigator.pushReplacement(context, route);
                   },
                 ),
-                Divider(height: 10.0, color: Colors.white,thickness: 6.0,),
+                //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
 
                 ListTile(
-                  leading: Icon(Icons.exit_to_app,color: Colors.white,),
-                  title: Text("Logout",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.exit_to_app,color: Colors.deepOrangeAccent,),
+                  title: Text("Logout",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     EcommerceApp.auth.signOut().then((c){
                       Route route = MaterialPageRoute(builder: (c) =>AuthenticScreen());
@@ -122,7 +103,7 @@ class MyDrawer extends StatelessWidget {
                     });
                   },
                 ),
-                //Divider(height: 20.0, color: Colors.white,thickness: 6.0,),
+                //Divider(height: 20.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
 
               ],
             ),

@@ -28,17 +28,7 @@ class _StoreHomeState extends State<StoreHome> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-                begin: const FractionalOffset(0.0, 0.0),
-                end: const FractionalOffset(1.0, 0.0),
-                stops: [0.0,1.0],
-                tileMode: TileMode.clamp,
-              ),
-            ),
-          ),
+
           title: Text(
             "Bhavna Saree",
             style: TextStyle(fontSize: 50.0, color: Colors.white,fontFamily: "Signatra"),
@@ -48,10 +38,10 @@ class _StoreHomeState extends State<StoreHome> {
             Stack(
               children: [
                 IconButton(
-                  icon: Icon(Icons.shopping_cart,color: Colors.pinkAccent,),
+                  icon: Icon(Icons.shopping_cart,color: Colors.white,),
                   onPressed: (){
                     Route route = MaterialPageRoute(builder: (c) =>CartPage());
-                    Navigator.pushReplacement(context, route);
+                    Navigator.push(context, route);
                   },
                 ),
                 Positioned(
@@ -70,7 +60,7 @@ class _StoreHomeState extends State<StoreHome> {
                           builder: (context,counter,_)
                               {
                                 return Text(
-                                  counter.count.toString(),
+                                    (EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).length-1).toString(),
                                   style: TextStyle(color: Colors.black,fontSize: 12.0,fontWeight: FontWeight.w500),
                                 );
                               },
@@ -118,6 +108,11 @@ class _StoreHomeState extends State<StoreHome> {
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
   return InkWell(
+    onTap:()
+    {
+     Route route = MaterialPageRoute(builder : (c)=>ProductPage(itemModel : model));
+     Navigator.push(context, route);
+    },
     splashColor: Colors.pinkAccent,
     child: Padding(
       padding: EdgeInsets.all(6.0),
@@ -240,6 +235,30 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                     child: Container(),
                   ),
                   //remove from cart
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: removeCartFunction == null
+                    ? IconButton(
+                      icon: Icon(Icons.add_shopping_cart_sharp,color: Colors.deepOrangeAccent,),
+                      onPressed: ()
+                      {
+                        checkItemInCart(model.shortInfo, context);
+                      },
+                    )
+                    : IconButton(
+                      icon: Icon(Icons.remove_shopping_cart_sharp,color: Colors.deepOrangeAccent,),
+                      onPressed: ()
+                      {
+                        removeCartFunction();
+                        Route route =  MaterialPageRoute(builder: (c)=> StoreHome());
+                        Navigator.push(context, route);
+                      },
+                    ),
+                  ),
+                  Divider(
+                    height: 5.0,
+                    color: Colors.deepOrangeAccent,
+                  ),
                 ],
               ),
             ),
@@ -252,12 +271,58 @@ Widget sourceInfo(ItemModel model, BuildContext context,
 
 
 
-Widget card({Color primaryColor = Colors.pinkAccent, String imgPath}) {
-  return Container();
+
+
+
+Widget card({Color primaryColor = Colors.deepOrangeAccent, String imgPath}) {
+  return Container(
+
+    height: 150.0,
+    width: width * .34,
+    margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+    decoration: BoxDecoration(
+      color: primaryColor,
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      boxShadow: <BoxShadow>[
+        BoxShadow(offset: Offset(0,5),blurRadius: 10.0,color: Colors.grey[200]),
+      ]
+    ),
+    child: ClipRRect(
+      borderRadius : BorderRadius.all(Radius.circular(20.0)),
+      child: Image.network(
+        imgPath,
+        height: 150.0,
+        width: width * .34,
+        fit: BoxFit.fill,
+
+      ),
+    ),
+  );
 }
 
 
 
-void checkItemInCart(String productID, BuildContext context)
+void checkItemInCart(String shortInfoAsID, BuildContext context)
 {
+  EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).contains(shortInfoAsID)
+      ? Fluttertoast.showToast(msg: "Item is already in cart...")
+      : addItemToCart(shortInfoAsID, context);
+}
+
+Future <void> addItemToCart(String shortInfoAsID, BuildContext context) async
+{
+  List tempCartList = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+  tempCartList.add(shortInfoAsID);
+  
+  EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
+    .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+    .setData({
+    EcommerceApp.userCartList : tempCartList,
+  }).then((v){
+    Fluttertoast.showToast(msg: "Item Added to cart successfully...");
+    
+    EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempCartList);
+
+    Provider.of<CartItemCounter>(context,listen: false).displayResult();
+  });
 }

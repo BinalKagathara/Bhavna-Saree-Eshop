@@ -14,19 +14,11 @@ class AdminSignInPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
-              colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-              begin: const FractionalOffset(0.0, 0.0),
-              end: const FractionalOffset(1.0, 0.0),
-              stops: [0.0,1.0],
-              tileMode: TileMode.clamp,
-            ),
-          ),
+
         ),
         title: Text(
           "Bhavna Saree",
-          style: TextStyle(fontSize: 50.0, color: Colors.lightGreenAccent,fontFamily: "Signatra"),
+          style: TextStyle(fontSize: 50.0, color: Colors.white,fontFamily: "Signatra"),
         ),
         centerTitle: true,
       ),
@@ -55,15 +47,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 
     return SingleChildScrollView(
       child: Container(
-        decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-            colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-            begin: const FractionalOffset(0.0, 0.0),
-            end: const FractionalOffset(1.0, 0.0),
-            stops: [0.0,1.0],
-            tileMode: TileMode.clamp,
-          ),
-        ),
+
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -79,7 +63,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
               padding: EdgeInsets.all(8.0),
               child: Text(
                 "Admin",
-                style: TextStyle(color: Colors.pinkAccent,fontSize: 28.0,fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 28.0,fontWeight: FontWeight.bold),
               ),
             ),
             Form(
@@ -102,7 +86,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
               ),
             ),
             SizedBox(
-              height: 25.0,
+              height: 20.0,
             ),
             RaisedButton(
               onPressed: () {
@@ -117,24 +101,17 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
                     }
                 );
               },
-              color: Colors.white,
-              child: Text("Login",style: TextStyle(color: Colors.black),),
+              color: Colors.deepOrangeAccent,
+              child: Text("Login",style: TextStyle(color: Colors.white),),
             ),
+
             SizedBox(
-              height: 50.0,
-            ),
-            Container(
-              height: 4.0,
-              width: _screenWidth * 0.8,
-              color: Colors.pinkAccent,
-            ),
-            SizedBox(
-              height: 20.0,
+              height: 70.0,
             ),
             FlatButton.icon(
               onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>AuthenticScreen())),
-              icon: (Icon(Icons.nature_people,color: Colors.pinkAccent,)),
-              label: Text("I'm not Admin",style: TextStyle(color: Colors.pinkAccent,fontWeight: FontWeight.bold),),
+              icon: (Icon(Icons.nature_people,color: Colors.deepOrangeAccent,)),
+              label: Text("I'm not Admin",style: TextStyle(color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold),),
             ),
             SizedBox(
               height: 50.0,

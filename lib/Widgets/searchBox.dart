@@ -18,15 +18,7 @@ class SearchBoxDelegate extends SliverPersistentHeaderDelegate {
           Navigator.pushReplacement(context, route);
         },
         child: Container(
-          decoration: new BoxDecoration(
-            gradient: new LinearGradient(
-              colors: [Colors.pinkAccent,Colors.lightGreenAccent],
-              begin: const FractionalOffset(0.0, 0.0),
-              end: const FractionalOffset(1.0, 0.0),
-              stops: [0.0,1.0],
-              tileMode: TileMode.clamp,
-            ),
-          ),
+
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
           height: 80.0,
