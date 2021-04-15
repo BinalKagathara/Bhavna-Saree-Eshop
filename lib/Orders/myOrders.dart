@@ -16,7 +16,26 @@ class _MyOrdersState extends State<MyOrders> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(),
+      child: Scaffold(
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: Colors.deepOrangeAccent,
+          centerTitle: true,
+          title: Text("My Orders",style: TextStyle(color: Colors.white),),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.arrow_drop_down_circle,color: Colors.white,),
+              onPressed: ()
+              {
+                SystemNavigator.pop();
+              },
+            ),
+          ],
+        ),
+        body: StreamBuilder<QuerySnapshot>(
+
+        ),
+      ),
     );
   }
 }

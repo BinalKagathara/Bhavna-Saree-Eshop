@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  razorpay_flutter: ^1.2.1
+  toast: ^0.1.5
 
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.13.2+1

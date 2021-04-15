@@ -272,8 +272,6 @@ Widget sourceInfo(ItemModel model, BuildContext context,
 
 
 
-
-
 Widget card({Color primaryColor = Colors.deepOrangeAccent, String imgPath}) {
   return Container(
 
@@ -294,6 +292,7 @@ Widget card({Color primaryColor = Colors.deepOrangeAccent, String imgPath}) {
         height: 150.0,
         width: width * .34,
         fit: BoxFit.fill,
+
 
       ),
     ),

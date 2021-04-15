@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Address/address.dart';
+import 'package:e_shop/Store/Payment.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
@@ -42,6 +43,8 @@ class _CartPageState extends State<CartPage> {
             {
               Route route = MaterialPageRoute(builder: (c)=> Address(totalAmount: totalAmount));
               Navigator.push(context, route);
+              //Route route = MaterialPageRoute(builder: (c)=> Payment());
+              //Navigator.push(context, route);
             }
         },
         label: Text("Check Out"),
