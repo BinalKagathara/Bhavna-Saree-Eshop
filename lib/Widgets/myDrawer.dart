@@ -19,9 +19,11 @@ class MyDrawer extends StatelessWidget {
             child: Column(
               children: [
                 Material(
+                  //color: Colors.deepOrangeAccent,
                   borderRadius: BorderRadius.all(Radius.circular(80.0)),
                   elevation: 8.0,
                   child: Container(
+                    //color: Colors.deepOrangeAccent,
                     height: 160.0,
                     width: 160.0,
                     child: CircleAvatar(
@@ -39,6 +41,11 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
           ),
+          Divider(
+            height: 10.0,
+            color: Colors.deepOrangeAccent,
+            thickness: 5.0,
+          ),
           SizedBox(height: 12.0,),
           Container(
             padding: EdgeInsets.only(top: 1.0),
@@ -49,7 +56,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text("Home",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>StoreHome());
-                    Navigator.pushReplacement(context, route);
+                    Navigator.push(context, route);
                   },
                 ),
                 
@@ -58,7 +65,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text("My Order",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>MyOrders());
-                    Navigator.pushReplacement(context, route);
+                    Navigator.push(context, route);
                   },
                 ),
                 //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
@@ -68,7 +75,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text("My Cart",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>CartPage());
-                    Navigator.pushReplacement(context, route);
+                    Navigator.push(context, route);
                   },
                 ),
                 //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
@@ -78,7 +85,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text("Search",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>SearchProduct());
-                    Navigator.pushReplacement(context, route);
+                    Navigator.push(context, route);
                   },
                 ),
                 //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
@@ -88,7 +95,7 @@ class MyDrawer extends StatelessWidget {
                   title: Text("Add New Address",style: TextStyle(color: Colors.deepOrangeAccent),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) =>AddAddress());
-                    Navigator.pushReplacement(context, route);
+                    Navigator.push(context, route);
                   },
                 ),
                 //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
@@ -99,7 +106,7 @@ class MyDrawer extends StatelessWidget {
                   onTap: (){
                     EcommerceApp.auth.signOut().then((c){
                       Route route = MaterialPageRoute(builder: (c) =>AuthenticScreen());
-                      Navigator.pushReplacement(context, route);
+                      Navigator.push(context, route);
                     });
                   },
                 ),

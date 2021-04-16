@@ -113,7 +113,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
      Route route = MaterialPageRoute(builder : (c)=>ProductPage(itemModel : model));
      Navigator.push(context, route);
     },
-    splashColor: Colors.pinkAccent,
+    splashColor: Colors.deepOrangeAccent,
     child: Padding(
       padding: EdgeInsets.all(6.0),
       child: Container(
@@ -155,7 +155,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                       Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
-                          color: Colors.pinkAccent
+                          color: Colors.deepOrangeAccent
                         ),
                         alignment: Alignment.topLeft,
                         width: 40.0,

@@ -15,13 +15,16 @@ class SearchBoxDelegate extends SliverPersistentHeaderDelegate {
         onTap: ()
         {
           Route route = MaterialPageRoute(builder: (c) => SearchProduct());
-          Navigator.pushReplacement(context, route);
+          Navigator.push(context, route);
         },
         child: Container(
 
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
           height: 80.0,
+          decoration: BoxDecoration(
+            color: Colors.deepOrangeAccent,
+          ),
           child: InkWell(
             child: Container(
               margin: EdgeInsets.only(left: 10.0,right: 10.0),
