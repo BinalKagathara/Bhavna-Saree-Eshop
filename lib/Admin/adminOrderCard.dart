@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminOrderDetails.dart';
 import 'package:e_shop/Models/item.dart';
+import 'package:e_shop/Widgets/orderCard.dart';
 import 'package:flutter/material.dart';
 
 import '../Store/storehome.dart';
@@ -9,19 +10,45 @@ import '../Store/storehome.dart';
 int counter=0;
 class AdminOrderCard extends StatelessWidget
 {
+  final int itemCounter;
+  final List<DocumentSnapshot> data;
+  final String orderID;
+  final String  addressID;
+  final String orderBy;
+
+  AdminOrderCard({Key key,this.itemCounter,this.data,this.orderID,this.addressID,this.orderBy}) : super (key: key);
+
 
   @override
   Widget build(BuildContext context)
   {
-    return  InkWell();
+    return  InkWell(
+      onTap: ()
+      {
+        Route route;
+        if(counter == 0)
+        {
+          counter=counter + 1;
+          route = MaterialPageRoute(builder: (c) => AdminOrderDetails(orderID: orderID,orderBy: orderBy, addressID: addressID));
+        }
+        Navigator.push(context, route);
+      },
+      child: Container(
+        color: Colors.deepOrangeAccent,
+        padding: EdgeInsets.all(10.0),
+        margin: EdgeInsets.all(10.0),
+        height: itemCounter * 190.0,
+        child: ListView.builder(
+          itemCount: itemCounter,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (c, index)
+          {
+            ItemModel model = ItemModel.fromJson(data[index].data);
+            return sourceOrderInfo(model, context);
+          },
+        ),
+      ),
+    );
   }
 }
 
-
-
-Widget sourceInfo(ItemModel model, BuildContext context,
-    {Color background})
-{
-
-  return  Container();
-}

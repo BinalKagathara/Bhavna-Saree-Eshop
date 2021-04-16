@@ -8,7 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-class AdminOrderDetails extends StatelessWidget {
+class AdminOrderDetails extends StatelessWidget
+{
+  final String orderID;
+  final String orderBy;
+  final String addressID;
+
+  AdminOrderDetails({Key key , this.orderID,this.orderBy,this.addressID}): super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
