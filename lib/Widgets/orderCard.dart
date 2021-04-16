@@ -36,7 +36,7 @@ class OrderCard extends StatelessWidget
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (c, index)
           {
-            ItemModel itemModel = ItemModel.fromJson(data[index].data);
+            ItemModel model = ItemModel.fromJson(data[index].data);
             return sourceOrderInfo(model, context);
           },
         ),

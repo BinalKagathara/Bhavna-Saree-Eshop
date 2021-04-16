@@ -176,7 +176,7 @@ class _AddressCardState extends State<AddressCard> {
                           ),
 
                           TableRow(
-                              children:[
+                               children:[
                                 KeyText(msg: "Phone Number",),
                                 Text(widget.model.phoneNumber),
                               ]
