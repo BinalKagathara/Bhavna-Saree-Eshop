@@ -42,8 +42,7 @@ class _StoreHomeState extends State<StoreHome> {
     );
 
     width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text(
             "Bhavna Saree",
@@ -114,8 +113,7 @@ class _StoreHomeState extends State<StoreHome> {
           ],
         ),
 
-      ),
-    );
+      );
   }
 }
 

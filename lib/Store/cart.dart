@@ -136,7 +136,7 @@ class _CartPageState extends State<CartPage> {
             children: [
               Icon(Icons.insert_emoticon,color: Colors.white,),
               Text("Cart is empty"),
-              Text("Start Adding items to yout cart..."),
+              Text("Start Adding items to your cart..."),
             ],
           ),
         ),
