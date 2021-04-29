@@ -22,7 +22,7 @@ class _MyOrdersState extends State<MyOrders> {
           iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.deepOrangeAccent,
           centerTitle: true,
-          title: Text("My Orders",style: TextStyle(color: Colors.white),),
+          title: Text("My Orders",style: TextStyle(color: Colors.white,fontFamily: "Signatra",fontSize: 32.0),),
           actions: [
             IconButton(
               icon: Icon(Icons.arrow_drop_down_circle,color: Colors.white,),

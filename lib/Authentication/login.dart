@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminLogin.dart';
+import 'package:e_shop/Authentication/forgotPass.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
 import 'package:e_shop/DialogBox/loadingDialog.dart';
@@ -20,7 +21,7 @@ class _LoginState extends State<Login>
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailTextEditingController = TextEditingController();
   final TextEditingController _PasswordTextEditingController = TextEditingController();
-
+  bool _isObscure = true;
 
 
   @override
@@ -38,7 +39,7 @@ class _LoginState extends State<Login>
 
             ),
             SizedBox(
-              height: 110.0,
+              height: 90.0,
             ),
             Padding(
               padding: EdgeInsets.all(8.0),
@@ -58,17 +59,42 @@ class _LoginState extends State<Login>
                     hintText: "Email",
                     isObsecure: false,
                   ),
-                  CustomTextField(
-                    controller: _PasswordTextEditingController,
-                    data: Icons.lock,
-                    hintText: "Password",
-                    isObsecure: true,
-                  ),
+                  Container(
+                    color: Colors.white,
+                    padding: const EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                      child: TextField(
+                        obscureText: _isObscure,
+                        controller: _PasswordTextEditingController,
+                        cursorColor: Theme.of(context).primaryColor,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+
+                          prefixIcon: Icon(Icons.lock,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          focusColor: Theme.of(context).primaryColor,
+                            hintText: 'Password',
+                            suffixIcon: IconButton(
+                                icon: Icon(
+                                    _isObscure ? Icons.visibility_off : Icons.visibility),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                })),
+                      ),
+                    ),
+
                 ],
               ),
             ),
+            FlatButton(
+              onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPass())),
+              child:Text("Forgot Password?",style: TextStyle(color: Colors.grey,),),
+            ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
             RaisedButton(
               onPressed: () {
@@ -76,23 +102,24 @@ class _LoginState extends State<Login>
                     _PasswordTextEditingController.text.isNotEmpty
                     ? loginUser()
                     : showDialog(
-                        context: context,
-                        builder: (c)
-                        {
-                          return ErrorAlertDialog(message: "Please enter email and password",);
-                        }
-                      );
+                    context: context,
+                    builder: (c)
+                    {
+                      return ErrorAlertDialog(message: "Please enter email and password",);
+                    }
+                );
               },
               color: Colors.deepOrangeAccent,
               child: Text("Login",style: TextStyle(color: Colors.white),),
             ),
+            FlatButton(
+              onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPass())),
+              child:Text("Don't Have Account? Sign Up",style: TextStyle(color: Colors.grey,),),
+            ),
             SizedBox(
-              height: 50.0,
+              height: 70.0,
             ),
 
-            SizedBox(
-              height: 80.0,
-            ),
             FlatButton.icon(
               onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminSignInPage())),
               icon: (Icon(Icons.nature_people,color: Colors.deepOrangeAccent,)),
@@ -107,8 +134,8 @@ class _LoginState extends State<Login>
   void loginUser() async
   {
     showDialog(
-      context: context,
-      builder: (c)
+        context: context,
+        builder: (c)
         {
           return LoadingAlertDialog(message: "Authenticating, please wait...",);
         }
@@ -117,9 +144,9 @@ class _LoginState extends State<Login>
     await _auth.signInWithEmailAndPassword(
       email: _emailTextEditingController.text.trim(),
       password: _PasswordTextEditingController.text.trim(),
-      ).then((authUser){
+    ).then((authUser){
       firebaseUser = authUser.user;
-      }).catchError((error){
+    }).catchError((error){
       Navigator.pop(context);
       showDialog(
           context: context,
@@ -131,13 +158,13 @@ class _LoginState extends State<Login>
     });
 
     if(firebaseUser != null)
-      {
-        readData(firebaseUser).then((s){
-          Navigator.pop(context);
-          Route route = MaterialPageRoute(builder: (c) =>StoreHome());
-          Navigator.pushReplacement(context, route);
-        });
-      }
+    {
+      readData(firebaseUser).then((s){
+        Navigator.pop(context);
+        Route route = MaterialPageRoute(builder: (c) =>StoreHome());
+        Navigator.pushReplacement(context, route);
+      });
+    }
   }
   Future readData(FirebaseUser fUser) async
   {

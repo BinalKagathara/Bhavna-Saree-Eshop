@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   razorpay_flutter: ^1.2.1
   toast: ^0.1.5
+  url_launcher: 5.1.2
+  carousel_pro: ^1.0.0
 
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.13.2+1
@@ -39,11 +41,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Signatra.ttf
 
+
   assets:
     - images/welcome.png
     - images/login.png
     - images/admin.png
     - images/cash.png
+    - images/forgotpass.jpg
+    - images/order.png
 
 
 

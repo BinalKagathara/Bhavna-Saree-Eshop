@@ -20,7 +20,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget
       centerTitle: true,
       title: Text(
         "Bhavna Saree",
-        style: TextStyle(fontSize: 50.0, color: Colors.white,fontFamily: "Signatra"),
+        style: TextStyle(color: Colors.white,fontFamily: "Signatra",fontSize: 40.0),
       ),
       bottom: bottom,
         actions: [

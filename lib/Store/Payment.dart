@@ -31,7 +31,7 @@ class _PaymentState extends State<Payment> {
   void openCheckout(){
     var options = {
       "key" : "rzp_test_aoohymBxZkF2jD",
-      "amount" : num.parse(textEditingController.text),
+      "amount" : num.parse(textEditingController.text)*100,
       "name" : "Bhavna Saree",
       "description" : "Secure payment",
       "prefill" : {
@@ -71,24 +71,29 @@ class _PaymentState extends State<Payment> {
       appBar: AppBar(
         title: Text("Payment..."),
       ),
-      body: Column(
-        children: [
-          TextField(
-            controller: textEditingController,
-            decoration: InputDecoration(
-              hintText: "Enter amount",
-            ),
-          ),
-          SizedBox(height: 10.0,),
-          RaisedButton(
-            color: Colors.deepOrangeAccent,
-            child: Text("Pay"),
-            onPressed: (){
-              openCheckout();
-            },
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: textEditingController,
 
-        ],
+              decoration: InputDecoration(
+                hintText: "Enter amount",
+              ),
+            ),
+            SizedBox(height: 10.0,),
+            RaisedButton(
+
+              color: Colors.deepOrangeAccent,
+              child: Text("Pay",style: TextStyle(color: Colors.white,fontSize: 20.0),),
+              onPressed: (){
+                openCheckout();
+              },
+            ),
+
+          ],
+        ),
       ),
     );
   }

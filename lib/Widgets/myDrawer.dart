@@ -4,6 +4,7 @@ import 'package:e_shop/Address/addAddress.dart';
 import 'package:e_shop/Store/Search.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Orders/myOrders.dart';
+import 'package:e_shop/Store/contectUs.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -99,6 +100,17 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 //Divider(height: 10.0, color: Colors.deepOrangeAccent,thickness: 6.0,),
+
+                ListTile(
+                  leading: Icon(Icons.contact_page,color: Colors.deepOrangeAccent,),
+                  title: Text("Contect Us",style: TextStyle(color: Colors.deepOrangeAccent),),
+                  onTap: (){
+                    EcommerceApp.auth.signOut().then((c){
+                      Route route = MaterialPageRoute(builder: (c) =>Contect());
+                      Navigator.push(context, route);
+                    });
+                  },
+                ),
 
                 ListTile(
                   leading: Icon(Icons.exit_to_app,color: Colors.deepOrangeAccent,),

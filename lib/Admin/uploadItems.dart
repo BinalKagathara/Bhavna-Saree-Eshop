@@ -47,7 +47,7 @@ class _UploadPageState extends State<UploadPage> with AutomaticKeepAliveClientMi
           onPressed: ()
           {
             Route route = MaterialPageRoute(builder: (c) => AdminShiftOrders());
-            Navigator.pushReplacement(context, route);
+            Navigator.push(context, route);
           },
         ),
         actions: [

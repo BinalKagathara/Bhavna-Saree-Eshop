@@ -13,7 +13,7 @@ import '../Widgets/loadingWidget.dart';
 import '../Widgets/myDrawer.dart';
 import '../Widgets/searchBox.dart';
 import '../Models/item.dart';
-
+import 'package:carousel_pro/carousel_pro.dart';
 double width;
 
 class StoreHome extends StatefulWidget {
@@ -24,14 +24,30 @@ class StoreHome extends StatefulWidget {
 class _StoreHomeState extends State<StoreHome> {
   @override
   Widget build(BuildContext context) {
+
+    Widget image_carousel = new Container(
+      height: 200.0,
+      child: new Carousel(
+        boxFit: BoxFit.cover,
+        images: [
+          AssetImage('images/admin.png'),
+          AssetImage('images/cash.png'),
+          AssetImage('images/login.png'),
+          AssetImage('images/welcome.png'),
+        ],
+        autoplay: false,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 1000),
+      ),
+    );
+
     width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-
           title: Text(
             "Bhavna Saree",
-            style: TextStyle(fontSize: 50.0, color: Colors.white,fontFamily: "Signatra"),
+            style: TextStyle(fontSize: 40.0, color: Colors.white,fontFamily: "Signatra"),
           ),
           centerTitle: true,
           actions: [
@@ -58,12 +74,12 @@ class _StoreHomeState extends State<StoreHome> {
                         left: 6.0,
                         child: Consumer<CartItemCounter>(
                           builder: (context,counter,_)
-                              {
-                                return Text(
-                                    (EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).length-1).toString(),
-                                  style: TextStyle(color: Colors.black,fontSize: 12.0,fontWeight: FontWeight.w500),
-                                );
-                              },
+                          {
+                            return Text(
+                              (EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList).length-1).toString(),
+                              style: TextStyle(color: Colors.black,fontSize: 12.0,fontWeight: FontWeight.w500),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -84,15 +100,15 @@ class _StoreHomeState extends State<StoreHome> {
                 return !dataSnapshot.hasData
                     ? SliverToBoxAdapter(child: Center(child: circularProgress(),),)
                     : SliverStaggeredGrid.countBuilder(
-                          crossAxisCount: 1,
-                          staggeredTileBuilder: (c) => StaggeredTile.fit(1),
-                          itemBuilder: (context, index)
-                          {
-                            ItemModel model = ItemModel.fromJson(dataSnapshot.data.documents[index].data);
-                            return sourceInfo(model, context);
-                          },
-                    itemCount: dataSnapshot.data.documents.length,
-                      );
+                  crossAxisCount: 1,
+                  staggeredTileBuilder: (c) => StaggeredTile.fit(1),
+                  itemBuilder: (context, index)
+                  {
+                    ItemModel model = ItemModel.fromJson(dataSnapshot.data.documents[index].data);
+                    return sourceInfo(model, context);
+                  },
+                  itemCount: dataSnapshot.data.documents.length,
+                );
               },
             ),
           ],
@@ -110,8 +126,8 @@ Widget sourceInfo(ItemModel model, BuildContext context,
   return InkWell(
     onTap:()
     {
-     Route route = MaterialPageRoute(builder : (c)=>ProductPage(itemModel : model));
-     Navigator.push(context, route);
+      Route route = MaterialPageRoute(builder : (c)=>ProductPage(itemModel : model));
+      Navigator.push(context, route);
     },
     splashColor: Colors.deepOrangeAccent,
     child: Padding(
@@ -127,7 +143,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 15.0,),
+                  SizedBox(height: 30.0,),
                   Container(
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
@@ -150,87 +166,16 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                     ),
                   ),
                   SizedBox(height: 20.0,),
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: Colors.deepOrangeAccent
+                  Container(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Text(" ₹ " + model.price.toString(),style: TextStyle(color: Colors.black,fontSize: 14.0,fontWeight: FontWeight.bold),),
                         ),
-                        alignment: Alignment.topLeft,
-                        width: 40.0,
-                        height: 43.0,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "50%", style: TextStyle(fontSize:15.0,color: Colors.white,fontWeight: FontWeight.normal),
-                              ),
-                              Text(
-                                "OFF", style: TextStyle(fontSize: 12.0 ,color: Colors.white,fontWeight: FontWeight.normal),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10.0,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 0.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  r"Original Price : ₹ ",
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                                Text(
-                                  (model.price + model.price).toString(),
-                                  style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 5.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  r"New Price : ",
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Text(
-                                  "₹ ",
-                                  style: TextStyle(color: Colors.red,fontSize: 16.0,),
-                                ),
-                                Text(
-                                  (model.price).toString(),
-                                  style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-
                   Flexible(
                     child: Container(),
                   ),
@@ -238,14 +183,14 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                   Align(
                     alignment: Alignment.centerRight,
                     child: removeCartFunction == null
-                    ? IconButton(
+                        ? IconButton(
                       icon: Icon(Icons.add_shopping_cart_sharp,color: Colors.deepOrangeAccent,),
                       onPressed: ()
                       {
                         checkItemInCart(model.shortInfo, context);
                       },
                     )
-                    : IconButton(
+                        : IconButton(
                       icon: Icon(Icons.remove_shopping_cart_sharp,color: Colors.deepOrangeAccent,),
                       onPressed: ()
                       {
@@ -279,11 +224,11 @@ Widget card({Color primaryColor = Colors.deepOrangeAccent, String imgPath}) {
     width: width * .34,
     margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
     decoration: BoxDecoration(
-      color: primaryColor,
-      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-      boxShadow: <BoxShadow>[
-        BoxShadow(offset: Offset(0,5),blurRadius: 10.0,color: Colors.grey[200]),
-      ]
+        color: primaryColor,
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(offset: Offset(0,5),blurRadius: 10.0,color: Colors.grey[200]),
+        ]
     ),
     child: ClipRRect(
       borderRadius : BorderRadius.all(Radius.circular(20.0)),
@@ -312,14 +257,14 @@ Future <void> addItemToCart(String shortInfoAsID, BuildContext context) async
 {
   List tempCartList = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
   tempCartList.add(shortInfoAsID);
-  
+
   EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
-    .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
-    .setData({
+      .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+      .setData({
     EcommerceApp.userCartList : tempCartList,
   }).then((v){
     Fluttertoast.showToast(msg: "Item Added to cart successfully...");
-    
+
     EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempCartList);
 
     Provider.of<CartItemCounter>(context,listen: false).displayResult();

@@ -11,7 +11,7 @@ class CustomTextField extends StatelessWidget
 
 
   CustomTextField(
-      {Key key, this.controller, this.data, this.hintText,this.isObsecure}
+      {Key key, this.controller, this.data, this.hintText,this.isObsecure, suffix,}
       ) : super(key: key);
 
 
@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.all(10.0),
       child: TextFormField(
         controller: controller,

@@ -37,7 +37,7 @@ class _PaymentPageState extends State<PaymentPage> {
             children: [
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Image.asset("images/cash.png"),
+                child: Image.asset("images/order.png"),
               ),
               SizedBox(height: 10.0,),
               FlatButton(
@@ -46,7 +46,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 padding: EdgeInsets.all(8.0),
                 //splashColor: Colors.lightBlueAccent,
                 onPressed: ()=>addOrderDetails(),
-                child: Text("Place order",style: TextStyle(fontSize: 30.0,), ),
+                child: Text("Order Now!",style: TextStyle(fontSize: 26.0,), ),
               ),
             ],
           ),

@@ -137,7 +137,7 @@ class AdminStatusBanner extends StatelessWidget {
             },
             child: Container(
               child: Icon(
-                Icons.arrow_drop_down_circle,
+                Icons.logout,
                 color: Colors.white,
               ),
             ),
@@ -273,5 +273,4 @@ class AdminShippingDetails extends StatelessWidget {
   }
 
 }
-
 

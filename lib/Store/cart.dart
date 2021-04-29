@@ -57,7 +57,7 @@ class _CartPageState extends State<CartPage> {
           ),
           title: Text(
             "Cart",
-          style: TextStyle(fontSize: 50.0, color: Colors.white,fontFamily: "Signatra"),
+          style: TextStyle(fontSize: 40.0, color: Colors.white,fontFamily: "Signatra"),
         ),
         centerTitle: true,
     ),

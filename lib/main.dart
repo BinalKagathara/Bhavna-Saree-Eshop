@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen>
               SizedBox(height : 20.0),
               Text(
                 "Bhavna Saree",
-              style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 34.0,fontFamily: "Signatra"),
+              style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 30.0,fontFamily: "Signatra"),
               ),
             ],
           ),
