@@ -1,3 +1,4 @@
+import 'package:e_shop/Store/feedback.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:e_shop/Models/item.dart';
@@ -91,13 +92,25 @@ class _ProductPageState extends State<ProductPage>
 
                         onTap: ()=>checkItemInCart(widget.itemModel.shortInfo, context),
 
-                        child: Container(
-                          color: Colors.deepOrangeAccent,
-                          width: MediaQuery.of(context).size.width - 40.0,
-                          height: 50.0,
-                          child: Center(
-                            child: Text("Add to Cart",style: TextStyle(color: Colors.white),),
-                          ),
+                        child: Column(
+                          children: [
+                            Container(
+                              color: Colors.deepOrangeAccent,
+                              width: MediaQuery.of(context).size.width - 40.0,
+                              height: 50.0,
+                              child: Center(
+                                child: Text("Add to Cart",style: TextStyle(color: Colors.white),),
+                              ),
+                            ),
+                            FlatButton(
+                              child: Text("FeedBack",style: TextStyle(color: Colors.blueGrey,fontSize: 16.0,fontWeight: FontWeight.bold),),
+                              onPressed: ()
+                              {
+                                Route route = MaterialPageRoute(builder: (c) => feedback());
+                                Navigator.push(context, route);
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ),
